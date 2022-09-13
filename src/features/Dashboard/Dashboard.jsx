@@ -18,10 +18,16 @@ const Dashboard = () => {
   // console.log(DashboardData);
 
   useEffect(() => {
-    dispatch(getTrendingCoins());
-    dispatch(getTop10Crypto());
-    dispatch(getTop10Exchanges());
-  }, [dispatch, DashboardData]);
+    if (DashboardData.trendingCoins.status === "idle") {
+      dispatch(getTrendingCoins());
+    }
+    if (DashboardData.top10crypto.status === "idle") {
+      dispatch(getTop10Crypto());
+    }
+    if (DashboardData.top10exchanges.status === "idle") {
+      dispatch(getTop10Exchanges());
+    }
+  }, [DashboardData, dispatch]);
 
   return (
     <div>

@@ -10,10 +10,12 @@ const CoinInfo = () => {
   const CoinData = useSelector((state) => state.CoinSlice);
 
   useEffect(() => {
-    dispatch(getCoinInfo(id));
-  }, [dispatch]);
+    if (CoinData.status === "idle") {
+      dispatch(getCoinInfo(id));
+    }
+  }, [CoinData.status, dispatch, id]);
 
-  console.log("CoinData", CoinData);
+  // console.log("CoinData", CoinData);
   return (
     <div>
       {CoinData.status === "failed" ? <CoinNotFound /> : <div>test</div>}
