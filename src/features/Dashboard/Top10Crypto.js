@@ -15,15 +15,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const options = {
   responsive: true,
@@ -65,28 +57,22 @@ const options = {
 };
 
 const Top10Crypto = () => {
-  const top10crypto = useSelector(
-    (state) => state.DashboardSlice.top10crypto.data
-  );
+  const top10crypto = useSelector((state) => state.DashboardSlice.top10crypto.data);
 
   return (
     <div className="p-10 w-full">
       <div className="border-2 border-amp-border md:p-5 xs:p-0 rounded-md bg-amp-card overflow-auto">
-        <h1 className="text-3xl font-bold md:p-0 xs:p-3 xs:pb-0">
-          Top 10 Cryptocurrencies
-        </h1>
+        <h1 className="text-3xl font-bold md:p-0 xs:p-3 xs:pb-0">Top 10 Cryptocurrencies</h1>
         <p className="text-amp-subtext py-1 font-light md:p-1 xs:p-3">
-          <b>Crypto market cap</b> is the total value of all the coins of a
-          particular cryptocurrency that have been mined or are in circulation.
-          Market capitalization is used to determine the ranking of
-          cryptocurrencies. The higher the market cap of a particular crypto
-          coin, the higher its ranking and share of the market.
+          <b>Crypto market cap</b> is the total value of all the coins of a particular
+          cryptocurrency that have been mined or are in circulation. Market capitalization is used
+          to determine the ranking of cryptocurrencies. The higher the market cap of a particular
+          crypto coin, the higher its ranking and share of the market.
         </p>
 
         <p className="text-amp-subtext py-2 mb-1 font-light md:p-1 xs:p-3">
-          The <b>24h trading volume</b> refers to the amount a cryptocurrency
-          has been bought and sold on all exchanges within the last 24 hours on
-          the spot market.
+          The <b>24h trading volume</b> refers to the amount a cryptocurrency has been bought and
+          sold on all exchanges within the last 24 hours on the spot market.
         </p>
         <table className="table-auto border-collapse border-2 border-x-0 border-amp-border w-full overflow-scroll border-spacing-40">
           <thead className="">
@@ -114,9 +100,7 @@ const Top10Crypto = () => {
                     <img src={coin.image} alt="alt" className="w-[15pt] mx-1" />
                     <Link to={`/coins/${coin.id}`} className="flex flex-row">
                       <p className="pl-3 text-amp-text">{coin.name}</p>
-                      <p className="pl-2 text-sm text-amp-subtext">
-                        {coin.symbol.toUpperCase()}
-                      </p>
+                      <p className="pl-2 text-sm text-amp-subtext">{coin.symbol.toUpperCase()}</p>
                     </Link>
                   </td>
 
@@ -131,11 +115,7 @@ const Top10Crypto = () => {
                       } text-xs`}
                     >
                       <FontAwesomeIcon
-                        icon={
-                          coin.peso_price_change_percentage_24h > 0
-                            ? faCaretUp
-                            : faCaretDown
-                        }
+                        icon={coin.peso_price_change_percentage_24h > 0 ? faCaretUp : faCaretDown}
                       />{" "}
                       {coin.peso_price_change_percentage_24h.toFixed(3)}
                     </span>
@@ -150,11 +130,7 @@ const Top10Crypto = () => {
                       } text-xs`}
                     >
                       <FontAwesomeIcon
-                        icon={
-                          coin.dollar_price_change_percentage_24h > 0
-                            ? faCaretUp
-                            : faCaretDown
-                        }
+                        icon={coin.dollar_price_change_percentage_24h > 0 ? faCaretUp : faCaretDown}
                       />{" "}
                       {coin.dollar_price_change_percentage_24h.toFixed(3)}
                     </span>
@@ -191,9 +167,7 @@ const Top10Crypto = () => {
                               pointHitRadius: 0,
                               borderWidth: 2,
                               borderColor:
-                                coin.peso_price_change_percentage_24h > 0
-                                  ? "#22c55e"
-                                  : "#ef4444",
+                                coin.peso_price_change_percentage_24h > 0 ? "#22c55e" : "#ef4444",
                               // borderColor: "rgb(255, 99, 132)",
                               // backgroundColor: "rgba(255, 99, 132, 0.5)",
                             },

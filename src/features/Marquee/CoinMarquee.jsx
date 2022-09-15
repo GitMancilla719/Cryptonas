@@ -40,10 +40,7 @@ const CoinMarquee = () => {
                 <p className="px-2 font-bold">{data.symbol.toUpperCase()}</p>
                 <p className="px-1 text-amp-subtext">${data.current_price}</p>
                 <p className="px-1 text-green-500">
-                  <FontAwesomeIcon
-                    icon={faCaretUp}
-                    className="pr-1 w-2 h-[12px]"
-                  />
+                  <FontAwesomeIcon icon={faCaretUp} className="pr-1 w-2 h-[12px]" />
                   {data.price_change_percentage_24h}
                 </p>
               </Link>
@@ -54,17 +51,11 @@ const CoinMarquee = () => {
             Top 24H Losers:
           </p>
           {MarqueeData.topLosers.map((data) => (
-            <div
-              key={data.symbol}
-              className="flex flex-row border-x-2 border-amp-border px-3"
-            >
+            <div key={data.symbol} className="flex flex-row border-x-2 border-amp-border px-3">
               <p className="px-2 font-bold">{data.symbol.toUpperCase()}</p>
               <p className="px-1 text-amp-subtext">${data.current_price}</p>
               <p className="px-1 text-red-500">
-                <FontAwesomeIcon
-                  icon={faCaretUp}
-                  className="pr-1 w-2 h-[12px]"
-                />
+                <FontAwesomeIcon icon={faCaretUp} className="pr-1 w-2 h-[12px]" />
                 {data.price_change_percentage_24h}
               </p>
             </div>

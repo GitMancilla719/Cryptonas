@@ -1,11 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  getTrendingCoins,
-  getTop10Crypto,
-  getTop10Exchanges,
-  // resetDash,
-} from "./DashboardSlice";
+import { getTrendingCoins, getTop10Crypto, getTop10Exchanges } from "./DashboardSlice";
 import TopTrendingPinas from "./TopTrendingPinas";
 import Top10Crypto from "./Top10Crypto";
 import Top10Exchanges from "./Top10Exchanges";
@@ -15,7 +10,6 @@ import CoinMarquee from "../Marquee/CoinMarquee";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const DashboardData = useSelector((state) => state.DashboardSlice);
-  // console.log(DashboardData);
 
   useEffect(() => {
     if (DashboardData.trendingCoins.status === "idle") {
@@ -27,7 +21,7 @@ const Dashboard = () => {
     if (DashboardData.top10exchanges.status === "idle") {
       dispatch(getTop10Exchanges());
     }
-  }, [DashboardData, dispatch]);
+  }, [dispatch]);
 
   return (
     <div>
