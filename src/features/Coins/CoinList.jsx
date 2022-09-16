@@ -217,7 +217,7 @@ const CoinList = () => {
                       </td>
 
                       {/* chart */}
-                      <td className="p-1 pt-2">
+                      {/* <td className="p-1 pt-2">
                         <div className="w-[90px] h-[40px] mx-auto">
                           <Line
                             options={options}
@@ -241,7 +241,7 @@ const CoinList = () => {
                             }}
                           />
                         </div>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
               </tbody>

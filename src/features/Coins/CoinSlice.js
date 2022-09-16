@@ -26,9 +26,9 @@ export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (
         //   `${COINGECKO_BASE_URL}/coins/${responsePHP.data[index].id}/market_chart?vs_currency=usd&days=6&interval=daily`
         // );
 
-        const responseUSDRange = await axios.get(
-          `${COINGECKO_BASE_URL}/coins/${responsePHP.data[index].id}/market_chart?vs_currency=usd&days=30&interval=daily`
-        );
+        // const responseUSDRange = await axios.get(
+        //   `${COINGECKO_BASE_URL}/coins/${responsePHP.data[index].id}/market_chart?vs_currency=usd&days=30&interval=daily`
+        // );
 
         const test = {
           mc_rank: responsePHP.data[index].market_cap_rank,
@@ -53,7 +53,7 @@ export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (
           dollar_market_cap: responseUSD.data[index].market_cap,
 
           // peso chart
-          peso_chart: responseUSDRange.data ? responseUSDRange.data.prices : null,
+          // peso_chart: responseUSDRange.data ? responseUSDRange.data.prices : null,
 
           // peso_market_cap_change_percentage_24h:
           //   responsePHP.data[index].market_cap_change_percentage_24h,
