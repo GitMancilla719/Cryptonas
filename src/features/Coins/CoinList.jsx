@@ -10,66 +10,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import SkeletonLoader from "../../common/components/SkeletonLoader";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-
-const options = {
-  responsive: true,
-  scales: {
-    x: {
-      ticks: {
-        display: false,
-      },
-      grid: {
-        display: false,
-        drawBorder: false,
-        drawOnChartArea: false,
-        drawTicks: false,
-      },
-    },
-    y: {
-      ticks: {
-        display: false,
-      },
-      grid: {
-        display: false,
-        drawBorder: false,
-        drawOnChartArea: false,
-        drawTicks: false,
-      },
-    },
-  },
-  tooltips: {
-    enabled: false,
-  },
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: false,
-    },
-  },
-};
 
 const CoinList = () => {
   const dispatch = useDispatch();
   const CoinData = useSelector((state) => state.CoinSlice);
-  // console.log(CoinData.Top100Crypto.data);
 
   const [page, setPage] = useState(1);
-  const [disableBtn, setDisableBtn] = useState(false);
 
   useEffect(() => {
     if (CoinData.Top100Crypto.status === "idle") {
@@ -81,8 +27,6 @@ const CoinList = () => {
     if (move === "previous" && page - 1 >= 1) {
       dispatch(getTop100Crypto(page - 1));
       setPage(page - 1);
-    } else {
-      setDisableBtn(true);
     }
 
     if (move === "next") {
@@ -91,19 +35,14 @@ const CoinList = () => {
     }
   };
 
-  const jumpPage = (pageNum) => {
-    dispatch(getTop100Crypto(pageNum));
-    setPage(pageNum);
-  };
-
-  console.log(
-    "page",
-    page,
-    "status",
-    CoinData.Top100Crypto.status,
-    "data",
-    CoinData.Top100Crypto.data
-  );
+  // console.log(
+  //   "page",
+  //   page,
+  //   "status",
+  //   CoinData.Top100Crypto.status,
+  //   "data",
+  //   CoinData.Top100Crypto.data
+  // );
 
   return (
     <div className="p-10 w-full">
@@ -140,7 +79,7 @@ const CoinList = () => {
                   <th colSpan="2">Price</th>
                   <th colSpan="2">Volume</th>
                   <th colSpan="2">Market Cap</th>
-                  <th>Last 30D</th>
+                  {/* <th>Last 30D</th> */}
                 </tr>
               </thead>
               <tbody className="">
@@ -215,33 +154,6 @@ const CoinList = () => {
                       <td className="border-r-1 border-amp-border border-dotted px-2">
                         $ {coin.dollar_market_cap.toLocaleString()}
                       </td>
-
-                      {/* chart */}
-                      {/* <td className="p-1 pt-2">
-                        <div className="w-[90px] h-[40px] mx-auto">
-                          <Line
-                            options={options}
-                            data={{
-                              labels: coin.peso_chart.map((obj) => ""),
-                              datasets: [
-                                {
-                                  label: "chwa",
-                                  data: coin.peso_chart.map((obj) => obj[1]),
-                                  pointRadius: 0,
-                                  pointHitRadius: 0,
-                                  borderWidth: 2,
-                                  borderColor:
-                                    coin.peso_price_change_percentage_24h > 0
-                                      ? "#22c55e"
-                                      : "#ef4444",
-                                  // borderColor: "rgb(255, 99, 132)",
-                                  // backgroundColor: "rgba(255, 99, 132, 0.5)",
-                                },
-                              ],
-                            }}
-                          />
-                        </div>
-                      </td> */}
                     </tr>
                   ))}
               </tbody>

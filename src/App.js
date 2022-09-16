@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from "./common/components/Footer";
 import Navbar from "./common/components/Navbar";
 import ScrollToTop from "./common/components/ScrollToTop";
 import PageNotFound from "./features/404/PageNotFound";
 import CoinInfo from "./features/Coins/CoinInfo";
 import CoinList from "./features/Coins/CoinList";
 import Dashboard from "./features/Dashboard/Dashboard";
+import Disclaimer from "./features/disclaimer/Disclaimer";
 
 const App = () => {
   return (
@@ -29,6 +31,8 @@ const App = () => {
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <Disclaimer />
+        <Footer />
       </BrowserRouter>
     </div>
   );

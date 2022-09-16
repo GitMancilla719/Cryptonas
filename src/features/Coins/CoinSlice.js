@@ -11,11 +11,11 @@ export const getCoinInfo = createAsyncThunk("Coins/getCoinInfo", async (id) => {
 
 export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (page = 1) => {
   const responsePHP = await axios.get(
-    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=PHP&per_page=10&page=${page}`
+    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=PHP&per_page=100&page=${page}`
   );
 
   const responseUSD = await axios.get(
-    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=USD&per_page=10&page=${page}`
+    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=USD&per_page=100&page=${page}`
   );
 
   const combinedData = [];
