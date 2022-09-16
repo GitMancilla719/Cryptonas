@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./common/components/Footer";
 import Navbar from "./common/components/Navbar";
 import ScrollToTop from "./common/components/ScrollToTop";
+import Uc from "./common/components/Uc";
 import PageNotFound from "./features/404/PageNotFound";
 import CoinInfo from "./features/Coins/CoinInfo";
 import CoinList from "./features/Coins/CoinList";
@@ -17,7 +18,6 @@ const App = () => {
 
         <Routes>
           <Route exact path="/" element={<Dashboard />} />
-          <Route path="/gainers-and-losers" element={<Dashboard />} />
 
           <Route path="/coins">
             <Route index element={<CoinList />} />
@@ -25,8 +25,8 @@ const App = () => {
           </Route>
 
           <Route path="/exchanges">
-            <Route index element={<Dashboard />} />
-            <Route path=":id" element={<Dashboard />} />
+            <Route index element={<Uc />} />
+            <Route path=":id" element={<Uc />} />
           </Route>
 
           <Route path="*" element={<PageNotFound />} />

@@ -7,6 +7,7 @@ import CoinNotFound from "../404/CoinNotFound copy";
 import { getCoinInfo } from "./CoinSlice";
 import SkeletonLoader from "../../common/components/SkeletonLoader";
 import CoinChart from "./CoinChart";
+import Uc from "../../common/components/Uc";
 
 const CoinInfo = () => {
   const { id } = useParams();
@@ -146,9 +147,9 @@ const CoinInfo = () => {
           </div>
 
           {/* Chart  */}
-          <div>
+          {/* <div>
             <CoinChart />
-          </div>
+          </div> */}
 
           {/* About  */}
           <div className="mx-3 my-2 h-fit text-sm bg-amp-card p-5 text-amp-subtext border-2 border-amp-border rounded-lg">
@@ -158,6 +159,8 @@ const CoinInfo = () => {
               dangerouslySetInnerHTML={{ __html: CoinData.CoinInfo.data.description.en }}
             />
           </div>
+
+          <Uc />
         </div>
       ) : CoinData.CoinInfo.status === "loading" ? (
         <SkeletonLoader />
