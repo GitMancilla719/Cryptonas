@@ -9,16 +9,13 @@ export const getCoinInfo = createAsyncThunk("Coins/getCoinInfo", async (id) => {
   return response.data;
 });
 
-export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async () => {
-  // ALWAYS MATCH URL FOR PESO AND DOLLAR
+export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (page = 1) => {
   const responsePHP = await axios.get(
-    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=PHP&per_page=100`
+    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=PHP&per_page=10&page=${page}`
   );
 
-  // return responsePHP.data;
-
   const responseUSD = await axios.get(
-    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=USD&per_page=100`
+    `${COINGECKO_BASE_URL}/coins/markets?vs_currency=USD&per_page=10&page=${page}`
   );
 
   const combinedData = [];
@@ -29,11 +26,12 @@ export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (
         //   `${COINGECKO_BASE_URL}/coins/${responsePHP.data[index].id}/market_chart?vs_currency=usd&days=6&interval=daily`
         // );
 
-        // const responseUSDRange = await axios.get(
-        //   `${COINGECKO_BASE_URL}/coins/${responsePHP.data[index].id}/market_chart?vs_currency=usd&days=30&interval=daily`
-        // );
+        const responseUSDRange = await axios.get(
+          `${COINGECKO_BASE_URL}/coins/${responsePHP.data[index].id}/market_chart?vs_currency=usd&days=30&interval=daily`
+        );
 
         const test = {
+          mc_rank: responsePHP.data[index].market_cap_rank,
           id: responsePHP.data[index].id,
           symbol: responsePHP.data[index].symbol,
           name: responsePHP.data[index].name,
@@ -55,7 +53,7 @@ export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (
           dollar_market_cap: responseUSD.data[index].market_cap,
 
           // peso chart
-          // peso_chart: responseUSDRange.data.prices,
+          peso_chart: responseUSDRange.data ? responseUSDRange.data.prices : null,
 
           // peso_market_cap_change_percentage_24h:
           //   responsePHP.data[index].market_cap_change_percentage_24h,
@@ -70,6 +68,7 @@ export const getTop100Crypto = createAsyncThunk("Coins/getTop100Crypto", async (
           // dollar_low_24h: responseUSD.data[index].low_24h,
         };
 
+        // console.log("page", page, combinedData);
         combinedData.push(test);
       } else {
         break;
@@ -97,6 +96,8 @@ const CoinSlice = createSlice({
     resetCoins: (state) => {
       state.CoinInfo.data = null;
       state.CoinInfo.status = "idle";
+      state.Top100Crypto.data = null;
+      state.Top100Crypto.status = "idle";
     },
   },
   extraReducers: (builder) => {
